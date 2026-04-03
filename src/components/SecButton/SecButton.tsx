@@ -5,6 +5,7 @@ import * as Clipboard from 'expo-clipboard';
 import { styles } from "./SecButtonStyles";
 
 import { InputPassword } from "../InputPassword/InputPassword";
+import { LengthPassword } from "../LengthPassword/LengthPassword";
 
 import { passwordService } from "../../services/passswordService";
 
@@ -12,9 +13,12 @@ import { passwordService } from "../../services/passswordService";
 
 export function SecButton(){
     const [ pass, setPass ] = useState('')
+    const [ passwordLength, setPasswordLength ] = useState('8')
 
     function handleGenPassword(){
-        let token = passwordService()
+        const length = Number(passwordLength)
+        if(!length||length<=0) return
+        let token = passwordService(length)
         setPass(token)
     }
 
@@ -29,14 +33,21 @@ export function SecButton(){
                 onPress={Pressionar}
             />*/}
 
+            <LengthPassword
+                length={passwordLength}
+                setLength={setPasswordLength}
+            />
+
             <InputPassword pass={pass}/>
 
-            <Pressable style={styles.button}>
-                <Text style={styles.texto} onPress={handleGenPassword}>GERAR SENHA 🙊</Text>
+            <Pressable style={({pressed}) =>[styles.button, pressed && styles.buttonPressed]}
+                onPress={handleGenPassword}>
+                <Text style={styles.texto}>GERAR SENHA 🙊</Text>
             </Pressable>
 
-            <Pressable style={styles.button}>
-                <Text style={styles.texto} onPress={handleCopy}>COPIAR 🗒️</Text>
+            <Pressable style={({pressed}) => [styles.button, pressed && styles.buttonPressed]}
+                onPress={handleCopy}>
+                <Text style={styles.texto}>COPIAR 🗒️</Text>
             </Pressable>
         </>
 

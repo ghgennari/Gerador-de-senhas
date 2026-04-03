@@ -15,5 +15,14 @@ export const styles = StyleSheet.create({
         marginBottom: 25,
         paddingVertical: 8,
         backgroundColor: '#007ab3',
+    },
+    buttonPressed:{
+        width: '80%',
+        borderWidth: 2,
+        borderColor: '#20ef00',
+        borderRadius: 5,
+        marginBottom: 25,
+        paddingVertical: 8,
+        backgroundColor: '#118200',
     }
 })

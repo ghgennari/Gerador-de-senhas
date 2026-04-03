@@ -1,9 +1,9 @@
-export function passwordService(){
+export function passwordService(length: number = 15){
     let password:string = ''
     let characters:string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[]{}|;:,.<>?/`~'
-    let passwordLength = 15
+    //let passwordLength = 15
 
-    for(let i = 0; i < passwordLength; i++){
+    for(let i = 0; i < length; i++){
         password += characters.charAt(Math.floor(Math.random() * characters.length))
     }
     return password
